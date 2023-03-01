@@ -1,0 +1,61 @@
+@local = http://localhost:3000
+@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2ZhNzY4NDM1YjEwYWUyZmFkMDE3NzQiLCJiaXoiOnRydWUsImlhdCI6MTY3NzM1OTE3OH0.KKM7TKqjniGKL-hPZ1cA1GCbgjE3OsEpZBDY7YaLNx4
+@id = 63ff315c53b6e479f0f8b541
+### create a user
+POST  {{local}}/user/new-user
+Content-Type: application/json
+
+{
+    "name" : "david",
+    "email" : "david1235@gmail.com",
+    "password" : "1234567",
+    "biz": true
+}
+
+### log in
+GET {{local}}/auth
+Content-Type: application/json
+
+{
+    "email" : "david1235@gmail.com",
+    "password" : "1234567"
+}
+
+### get my user
+GET {{local}}/user/my-user
+x-auth-token : {{token}}
+
+### create a card
+POST {{local}}/cards/new 
+Content-Type: application/json
+x-auth-token : {{token}}
+
+{
+    "bizName":"david1234",
+"bizDescription":"kelev yam1234",
+ "bizAddress":"zafriona1234",
+ "bizPhone":"0773220154"
+}
+
+### update card
+PUT {{local}}/cards/63ff7d61bd621c4cffcc2b47
+x-auth-token : {{token}}
+Content-Type: application/json
+
+{
+        "bizName":"david3333",
+"bizDescription":"kelev yam22222",
+ "bizAddress":"zafriona22222",
+ "bizPhone":"0773220154"
+}
+### delete card
+DELETE  {{local}}/cards/63ff67f39cbe9472cdbd6b02
+x-auth-token : {{token}}
+
+### get all cards
+GET {{local}}/cards/all
+x-auth-token : {{token}}
+
+### get a card
+GET {{local}}/cards/63fdd6ee23418e54bf6a09f3
+x-auth-token: {{token}}
